@@ -11,4 +11,4 @@ Contents:
 - m2.inp   (Mplus code for model 2)
 - m3.inp   (Mplus code for model 3)
 
-Click on the green Code button at the top right, select "Download ZIP" and extract the files.  
+Click on the green "Code" button at the top right, select "Download ZIP" and extract the files.  

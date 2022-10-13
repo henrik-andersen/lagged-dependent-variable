@@ -6,7 +6,7 @@ Andersen, Henrik K., &amp; Jochen Mayerl (2022). "Rehabilitating the Lagged Depe
 Contents: 
 
 - r-code.R (R Simulation code, lavaan models 1-3, repeated samples)
-- df.csv   (Simulated data described in Figure 3)
+- df.csv   (Simulated data described in Figure 3, for use with Mplus code)
 - m1.inp   (Mplus code for model 1)
 - m2.imp   (Mplus code for model 2)
 - m3.inp   (Mplus code for model 3)

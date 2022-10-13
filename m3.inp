@@ -1,0 +1,19 @@
+TITLE:      Rehabilitating the Lagged Dependent Variable with SEM
+            Henrik Andersen and Jochen Mayerl 
+            M3: V as latent variable  
+
+DATA:       FILE = df.csv;
+
+VARIABLE:   NAMES = Y0 Y1 Y2 D V U;    
+            USEVARIABLE = Y0 Y1 Y2 D; 
+ 
+ANALYSIS:   ESTIMATOR = ML; 
+            MODEL = NOMEANSTRUCTURE;
+            INFORMATION = EXPECTED;
+ 
+MODEL:      alpha BY Y1@1 Y2@1;
+            Y2 ON D;
+            Y2 ON Y1 (rho);
+            Y1 ON Y0 (rho);
+            alpha WITH Y0 D@0;
+            D WITH Y1 Y0@0; 

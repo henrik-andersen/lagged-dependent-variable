@@ -20,7 +20,7 @@ n <- 1000L
 
 rho   = 0.3 # Autoregressive effect, Yt -> Yt+1
 gamma = 0.6 # Effect U -> D
-delta = 0.5 # Effect U -> Y1
+theta = 0.5 # Effect U -> Y1
 beta  = 0.4 # Causal effect, D -> Y2
 
 # Time-invariant unobserved heterogeneity 
@@ -36,7 +36,7 @@ U = rnorm(n, 0, 1)
 D = gamma * U + rnorm(n, 0, 1)
 
 # Remaining realizations of outcome 
-Y1 = delta * U + rho * Y0 + 1 * V + rnorm(n, 0, 1)
+Y1 = theta * U + rho * Y0 + 1 * V + rnorm(n, 0, 1)
 Y2 = beta  * D + rho * Y1 + 1 * V + rnorm(n, 0, 1)
 
 # Put into dataframe
@@ -49,7 +49,7 @@ write.table(df, file = "df.csv", sep = ",", dec = ".", row.names = FALSE, col.na
 
 m1 = "
   Y2 ~ beta*D + rho*Y1 + V 
-  Y1 ~ delta*U + V
+  Y1 ~ theta*U + V
   D  ~ gamma*U 
 "
 sem(model = m1, data = df, estimator = "ML") %>%
@@ -60,7 +60,7 @@ sem(model = m1, data = df, estimator = "ML") %>%
 
 m2 = "
   Y2 ~ beta*D + rho*Y1 
-  Y1 ~ delta*U 
+  Y1 ~ theta*U 
   D  ~ gamma*U 
 "
 sem(model = m2, data = df, estimator = "ML") %>%
@@ -88,7 +88,7 @@ sem(model = m3, data = df, estimator = "ML") %>%
 
 set.seed(9876)
 
-sim_func = function(rho = 0.3, beta = 0.4, gamma = 0.6, delta = 0.5) {
+sim_func = function(rho = 0.3, beta = 0.4, gamma = 0.6, theta = 0.5) {
   
   # Set large sample size
   n = 1000L
@@ -106,7 +106,7 @@ sim_func = function(rho = 0.3, beta = 0.4, gamma = 0.6, delta = 0.5) {
   D = gamma * U + rnorm(n, 0, 1)
   
   # Remaining realizations of outcome 
-  Y1 = delta * U + rho * Y0 + 1 * V + rnorm(n, 0, 1)
+  Y1 = theta * U + rho * Y0 + 1 * V + rnorm(n, 0, 1)
   Y2 = beta  * D + rho * Y1 + 1 * V + rnorm(n, 0, 1)
   
   # Put into dataframe
